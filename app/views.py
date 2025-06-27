@@ -89,7 +89,7 @@ def getAllFavouritesByUser(request):
     favourites = services.getAllFavouritesByUser(user)
 
     return render(request, 'favourites.html', {
-        'favourites': favourites
+        'favourite_list': favourites
     })
 
 @login_required
