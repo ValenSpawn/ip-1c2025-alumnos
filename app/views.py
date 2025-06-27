@@ -86,15 +86,33 @@ def filter_by_type(request):
 # Estas funciones se usan cuando el usuario está logueado en la aplicación.
 @login_required
 def getAllFavouritesByUser(request):
-    pass
+    user = request.user
+    favourites = services.getAllFavouritesByUser(user)
+
+    return render(request, 'favourites.html', {
+        'favourites': favourites
+    })
 
 @login_required
 def saveFavourite(request):
-    pass
+    if request.method == 'POST':
+        from .layers.translator import translator
+
+        user = request.user
+        card = translator.fromTemplateIntoCard(request)
+
+        services.saveFavourite(card, user)
+
+        return redirect('home')
 
 @login_required
 def deleteFavourite(request):
-    pass
+      if request.method == 'POST':
+        user = request.user
+        name = request.POST.get('name')
+        services.deleteFavourite(name, user)
+
+        return redirect('get_favourites')
 
 @login_required
 def exit(request):
