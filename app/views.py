@@ -56,15 +56,32 @@ def search(request):
 
 # función utilizada para filtrar por el tipo del Pokemon
 def filter_by_type(request):
-    type = request.POST.get('type', '')
+    poke_type = request.POST.get('type', '').strip()
+    images = services.getAllImages()
+    favourite_list = []
 
-    if type != '':
-        images = [] # debe traer un listado filtrado de imágenes, segun si es o contiene ese tipo.
-        favourite_list = []
+    if poke_type:
+        # Filtrar imágenes por tipo
+        images = [card for card in images if poke_type in card.types]
 
-        return render(request, 'home.html', { 'images': images, 'favourite_list': favourite_list })
-    else:
-        return redirect('home')
+        # Asignar color según el tipo
+        for card in images:
+            if 'grass' in card.types:
+                card.color = 'border-success'
+            elif 'fire' in card.types:
+                card.color = 'border-danger'
+            elif 'water' in card.types:
+                card.color = 'border-primary'
+            else:
+                card.color = 'border-warning'
+
+        return render(request, 'home.html', {
+            'images': images,
+            'favourite_list': favourite_list
+        })
+
+    return redirect('home')
+    
 
 # Estas funciones se usan cuando el usuario está logueado en la aplicación.
 @login_required
