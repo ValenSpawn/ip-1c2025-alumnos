@@ -11,7 +11,7 @@ def getAllImages():
     raw_images = transport.getAllImages()
     cards = []
     for image_data in raw_images:
-        card = translator.translate_to_card(image_data)
+        card = translator.fromRequestIntoCard(image_data)
         cards.append(card)
     return cards
    
