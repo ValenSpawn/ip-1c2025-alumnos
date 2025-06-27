@@ -12,9 +12,10 @@ def index_page(request):
 def home(request):
     images = services.getAllImages()
     favourite_list = []
-  return render(request, 'home.html', {
-    'images': images,
-    'favourite_list': favourite_list
+  
+    return render(request, 'home.html', {
+        'images': images,
+        'favourite_list': favourite_list
 })
     return render(request, 'home.html', { 'images': images, 'favourite_list': favourite_list })
 
