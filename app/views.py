@@ -11,7 +11,7 @@ def index_page(request):
 # esta función obtiene 2 listados: uno de las imágenes de la API y otro de favoritos, ambos en formato Card, y los dibuja en el template 'home.html'.
 def home(request):
     images = services.getAllImages()
-    favourite_list = []
+    favourite_list = services.getAllFavouritesByUser(request.user) if request.user.is_authenticated else []
       
     for card in images:
         if 'grass' in card.types:
@@ -33,7 +33,7 @@ def home(request):
 def search(request):
     name = request.POST.get('query', '').strip()
     images = services.getAllImages()
-    favourite_list = []
+    favourite_list = services.getAllFavouritesByUser(request.user) if request.user.is_authenticated else []
   
     if name:
         images = [card for card in images if name.lower() in card.name.lower()]
@@ -58,7 +58,7 @@ def search(request):
 def filter_by_type(request):
     poke_type = request.POST.get('type', '').strip()
     images = services.getAllImages()
-    favourite_list = []
+    favourite_list = services.getAllFavouritesByUser(request.user) if request.user.is_authenticated else []
 
     if poke_type:
         # Filtrar imágenes por tipo
