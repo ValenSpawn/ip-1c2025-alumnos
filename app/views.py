@@ -12,7 +12,8 @@ def index_page(request):
 def home(request):
     images = services.getAllImages()
     favourite_list = []
-      for card in images:
+      
+    for card in images:
         if 'grass' in card.types:
             card.color = 'border-success'
         elif 'fire' in card.types:
