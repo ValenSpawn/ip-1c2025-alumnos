@@ -99,11 +99,18 @@ def getAllFavouritesByUser(request):
 def saveFavourite(request):
     if request.method == 'POST':
         from .layers.utilities import translator
-
+        from django.contrib import messages 
+        
         user = request.user
         card = translator.fromTemplateIntoCard(request)
+        
+        result = services.saveFavourite(card, user)
 
-        services.saveFavourite(card, user)
+        if result is None:
+            messages.warning(request, f"¡{card.name.capitalize()} ya está en tus favoritos!")
+        else:
+            messages.success(request, f"¡{card.name.capitalize()} añadido con éxito!")
+
 
         return redirect('home')
 
