@@ -4,7 +4,6 @@ from ..transport import transport
 from ...config import config
 from ..persistence import repositories
 from ..utilities import translator
-from django.contrib.auth import get_user
 
 # función que devuelve un listado de cards. Cada card representa una imagen de la API de Pokemon
 def getAllImages():
@@ -21,8 +20,8 @@ def filterByCharacter(name):
     filtered_cards = []
 
     for card in getAllImages():
-        # debe verificar si el name está contenido en el nombre de la card, antes de agregarlo al listado de filtered_cards.
-        filtered_cards.append(card)
+        if name.lower() in card.name.lower():
+            filtered_cards.append(card)
 
     return filtered_cards
 
@@ -31,8 +30,8 @@ def filterByType(type_filter):
     filtered_cards = []
 
     for card in getAllImages():
-        # debe verificar si la casa de la card coincide con la recibida por parámetro. Si es así, se añade al listado de filtered_cards.
-        filtered_cards.append(card)
+        if type_filter.lower() in [t.lower() for t in card.types]:
+            filtered_cards.append(card)
 
     return filtered_cards
 
@@ -42,7 +41,6 @@ def saveFavourite(card, user):
     if Favourite.objects.filter(user=user, name=card.name).exists():
         return None
 
-    card.user = user
     return repositories.save_favourite(card)
 
 # usados desde el template 'favourites.html'
