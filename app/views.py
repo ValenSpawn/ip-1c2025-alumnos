@@ -95,7 +95,7 @@ def getAllFavouritesByUser(request):
 @login_required
 def saveFavourite(request):
     if request.method == 'POST':
-        from .layers.translator import translator
+       from .layers.utilities import translator
 
         user = request.user
         card = translator.fromTemplateIntoCard(request)
