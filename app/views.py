@@ -111,7 +111,7 @@ def deleteFavourite(request):
         name = request.POST.get('name')
         services.deleteFavourite(request)
 
-        return redirect('get_favourites')
+        return redirect('favoritos')
 
 @login_required
 def exit(request):
