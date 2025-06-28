@@ -60,9 +60,18 @@ def getAllFavouritesByUser(user):
     return mapped_favourites
     
 
-def deleteFavourite(request):
-    favId = request.POST.get('id')
-    return repositories.delete_favourite(favId) # borramos un favorito por su ID
+def deleteFavourite(name, user):
+    from app.models import Favourite
+
+    try:
+        fav = Favourite.objects.get(name=name, user=user)
+        fav.delete()
+        return True
+    except Favourite.DoesNotExist:
+        print(f"El favorito '{name}' no existe o no pertenece al usuario.")
+        return False
+
+   
 
 #obtenemos de TYPE_ID_MAP el id correspondiente a un tipo segun su nombre
 def get_type_icon_url_by_name(type_name):
