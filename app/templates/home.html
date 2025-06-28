@@ -65,9 +65,11 @@
                                 <input type="hidden" name="height" value="{{ img.height }}">
                                 <input type="hidden" name="weight" value="{{ img.weight }}">
                                 <input type="hidden" name="types" value="{{ img.types }}">
-                                <input type="hidden" name="image" value="{{ img.image }}"> {% if img in favourite_list %}
-                                <button type="submit" class="btn btn-primary btn-sm float-left" style="color:white" disabled>✔️ Favoritos</button> {% else %}
-                                <button type="submit" class="btn btn-primary btn-sm float-left" style="color:white">❤️ Favoritos</button> {% endif %}
+                                <input type="hidden" name="image" value="{{ img.image }}"> {% if img.name in favourite_names %}
+                                <button type="submit" class="btn btn-secondary btn-sm" disabled>✅ Ya es favorito</button>
+                                {% else %}
+                                <button type="submit" class="btn btn-primary btn-sm" style="color:white">❤️ Añadir a favoritos</button>
+                                {% endif %}
                             </form>
                         </div>
                         {% endif %}
