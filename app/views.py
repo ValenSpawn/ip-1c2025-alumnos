@@ -22,10 +22,13 @@ def home(request):
             card.color = 'border-primary'
         else:
             card.color = 'border-warning'
-  
+
+    favourite_names = [card.name for card in favourite_list]
+
     return render(request, 'home.html', {
         'images': images,
-        'favourite_list': favourite_list
+        'favourite_list': favourite_list,
+        'favourite_names': favourite_names
 })
 
 # función utilizada en el buscador.
