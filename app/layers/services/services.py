@@ -37,11 +37,9 @@ def filterByType(type_filter):
     return filtered_cards
 
 # añadir favoritos (usado desde el template 'home.html')
-def saveFavourite(request):
-    fav = '' # transformamos un request en una Card (ver translator.py)
-    fav.user = get_user(request) # le asignamos el usuario correspondiente.
-
-    return repositories.save_favourite(fav) # lo guardamos en la BD.
+def saveFavourite(card, user):
+    card.user = user
+    return repositories.save_favourite(card)
 
 # usados desde el template 'favourites.html'
 def getAllFavouritesByUser(user):
