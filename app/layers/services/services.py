@@ -36,8 +36,12 @@ def filterByType(type_filter):
 
     return filtered_cards
 
-# añadir favoritos (usado desde el template 'home.html')
 def saveFavourite(card, user):
+    from app.models import Favourite
+
+    if Favourite.objects.filter(user=user, name=card.name).exists():
+        return None
+
     card.user = user
     return repositories.save_favourite(card)
 
