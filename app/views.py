@@ -109,7 +109,7 @@ def deleteFavourite(request):
       if request.method == 'POST':
         user = request.user
         name = request.POST.get('name')
-        services.deleteFavourite(request)
+        services.deleteFavourite(name, user)
 
         return redirect('favoritos')
 
