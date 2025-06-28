@@ -48,10 +48,13 @@ def getAllFavouritesByUser(user):
     if not user.is_authenticated:
         return []
 
-    favourite_list = repositories.get_favourites_by_user(user) 
-    mapped_favourites = [
-        translator.fromModelIntoCard(fav) for fav in favourite_list
-    ]
+    raw_favourites = repositories.get_all_favourites(user)
+    mapped_favourites = []
+
+    for fav in raw_favourites:
+        card = translator.fromDictionaryIntoCard(fav)  # ← adaptá el nombre si es necesario
+        mapped_favourites.append(card)
+
     return mapped_favourites
     
 
