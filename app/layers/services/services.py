@@ -50,8 +50,8 @@ def getAllFavouritesByUser(user):
     mapped_favourites = []
 
     for fav in raw_favourites:
-        card = translator.fromDictionaryIntoCard(fav)  # ← adaptá el nombre si es necesario
-        mapped_favourites.append(card)
+       card = translator.fromRepositoryIntoCard(fav)
+       mapped_favourites.append(card)
 
     return mapped_favourites
     
