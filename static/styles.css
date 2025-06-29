@@ -1,7 +1,7 @@
 body {
-    color: #f0f0f0;
-    background: #1a1a2e;
-    font-family: 'Roboto', sans-serif;
+    color: #f0f0f0 !important;
+    background: #1a1a2e !important;
+    font-family: 'Roboto', sans-serif !important;
 }
 
 .table-responsive {
