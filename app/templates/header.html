@@ -48,12 +48,27 @@
 
     {% block content %} {% endblock %} {% include "footer.html" %}
     <script>
-   window.addEventListener("load", () => {
-    const spinner = document.getElementById("spinner-overlay");
-    if (spinner) {
-      spinner.classList.add("hidden");
-    }
+   <script>
+  const spinner = document.getElementById("spinner-overlay");
+
+  document.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", (e) => {
+      const target = link.getAttribute("target");
+      const href = link.getAttribute("href");
+
+      if (href && !href.startsWith("#") && target !== "_blank") {
+        spinner.classList.remove("hidden");
+      }
+    });
   });
+
+  document.querySelectorAll("form").forEach(form => {
+    form.addEventListener("submit", () => {
+      spinner.classList.remove("hidden");
+    });
+  });
+</script>
+
   </script>
 </body>
 </html>
