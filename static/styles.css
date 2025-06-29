@@ -142,3 +142,6 @@ table.table td i {
     margin-top: 6px;
     font-size: 95%;
 }
+main {
+  border: 3px dashed lime !important;
+}
