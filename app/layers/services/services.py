@@ -1,5 +1,5 @@
 # capa de servicio/lógica de negocio
-
+from app.models import Favourite
 from ..transport import transport
 from ...config import config
 from ..persistence import repositories
@@ -58,8 +58,6 @@ def getAllFavouritesByUser(user):
     
 
 def deleteFavourite(name, user):
-    from app.models import Favourite
-
     try:
         fav = Favourite.objects.get(name=name, user=user)
         fav.delete()
