@@ -4,7 +4,7 @@ from sqlite3 import IntegrityError
 from app.models import Favourite
 
 
-def save_favourite(fav):
+def save_favourite(fav, user):
     try:
         fav = Favourite.objects.create(
             name=fav.name,  # Nombre del personaje
@@ -13,7 +13,7 @@ def save_favourite(fav):
             height=fav.height,  # altura
             weight=fav.weight,  # peso
             image=fav.image,  # Imagen
-            user=fav.user  # Usuario autenticado
+            user=user  # Usuario autenticado
         )
         return fav
     except IntegrityError as e:
