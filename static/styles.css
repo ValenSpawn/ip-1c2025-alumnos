@@ -1,8 +1,9 @@
 html, body {
+    height: 100%;
     color: #f0f0f0 !important;
     background: #1a1a2e !important;
     font-family: 'Roboto', sans-serif !important;
-    border: 10px dashed red !important;
+
 }
 
 .table-responsive {
