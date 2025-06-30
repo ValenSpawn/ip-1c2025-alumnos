@@ -1,5 +1,5 @@
 body{
-    background-color: #000000;
+    background-color: #121212;
     color: rgb(255, 255, 255)
 }
 
@@ -169,7 +169,7 @@ table.table td i {
 }
 
 .card {
-  border: 2px solid transparent;
+  border: 5px solid transparent;
 }
 
 
