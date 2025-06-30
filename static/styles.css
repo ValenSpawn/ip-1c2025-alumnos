@@ -1,5 +1,6 @@
 body{
-    background-color: black;
+    background-color: #000000;
+    color: rgb(255, 255, 255)
 }
 
 .table-responsive {
@@ -166,4 +167,9 @@ table.table td i {
 .card small.text-body-secondary {
   color: #000000 !important;
 }
+
+.card {
+  border: 2px solid transparent;
+}
+
 
