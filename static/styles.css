@@ -155,3 +155,15 @@ table.table td i {
   pointer-events: none;
   transition: opacity 0.4s ease;
 }
+.card .card-title {
+  color: #000000 !important;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.card .card-text,
+.card-footer,
+.card small.text-body-secondary {
+  color: #000000 !important;
+}
+
