@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-     <div id="spinner-overlay">
+     <div id="spinner-overlay" class="hidden">
     <div class="spinner-border text-secondary" role="status">
       <span class="visually-hidden">Cargando...</span>
     </div>
@@ -49,22 +49,29 @@
     {% block content %} {% endblock %} {% include "footer.html" %}
 
    <script>
-  const spinner = document.getElementById("spinner-overlay");
+  document.addEventListener("DOMContentLoaded", () => {
+    const spinner = document.getElementById("spinner-overlay");
 
-  document.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", (e) => {
-      const target = link.getAttribute("target");
-      const href = link.getAttribute("href");
+    // Ocultar el spinner apenas el DOM esté listo, sin esperar imágenes
+    spinner?.classList.add("hidden");
 
-      if (href && !href.startsWith("#") && target !== "_blank") {
-        spinner.classList.remove("hidden");
-      }
+    // Mostrar el spinner solo si hay navegación o formularios
+    document.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", (e) => {
+        const target = link.getAttribute("target");
+        const href = link.getAttribute("href");
+
+        if (href && !href.startsWith("#") && target !== "_blank") {
+          spinner?.classList.remove("hidden");
+        }
+      });
     });
-  });
 
-  document.querySelectorAll("form").forEach(form => {
-    form.addEventListener("submit", () => {
-      spinner.classList.remove("hidden");
+    document.querySelectorAll("form").forEach(form => {
+      form.addEventListener("submit", () => {
+        spinner?.classList.remove("hidden");
+        console.log("spinner ocultado")
+      });
     });
   });
 </script>
